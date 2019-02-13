@@ -7,11 +7,12 @@
 //
 
 import UIKit
+
 /*
  A component that has a TableView must conform to the
  UITableViewDataSource protocol.
  */
-class ViewController: UIViewController{
+class ViewController: UIViewController {
     
     @IBOutlet var textFields: [UITextField]!
     
@@ -28,6 +29,7 @@ class ViewController: UIViewController{
      ShoppingCart: contains the item and its price.
     */
     var shoppingCart: [(String, Int)] = []
+    
     
     
     override func viewDidLoad() {
@@ -84,19 +86,20 @@ class ViewController: UIViewController{
         Adds an item to the shopping cart when pressed.
     */
     @IBAction func addItemToCart(_ sender: UIButton) {
+        var product:(String, Int);
         let descriptionText = self.descriptionTextField.text!
+       
         let quantityText = Int(self.amountTextField.text!)
-        
-        let product: (String, Int) = (descriptionText, quantityText!)
-    
-        // add the tupple with the responses to the array.
-        self.shoppingCart.append(product)
-        
-        // build the string with the elements of the array
-        let result = buildString(self.shoppingCart)
-        
-        // put it on the view
-        self.itemsListArea.text += result
+        if self.isInstanceOfInt(quantityText) &&
+            descriptionText.count > 0 {
+            product.1 = quantityText!
+            product.0 = descriptionText
+            self.shoppingCart.append(product)
+        } else {
+            self.displayPopUpErrorMessage()
+        }
+        let stringToShow = buildString(self.shoppingCart)
+        self.itemsListArea.text += stringToShow
     }
     
     /*
@@ -107,5 +110,36 @@ class ViewController: UIViewController{
         self.amountTextField.text = ""
     }
     
+    /*
+     Checks if a number is an instance of Int.
+    */
+    func isInstanceOfInt(_ possibleNumber:Int?)-> Bool {
+        let result = possibleNumber is Int
+        if result == true {
+            return true
+        } else {
+            return false
+        }
+    }
+    /*
+        Displays an error message pop-up.
+    */
+    func displayPopUpErrorMessage() {
+        let messageTitle = "Wrong Input Values"
+        let errorMessage = "Description field is empty or quantity value is not numeric"
+        
+        // build a controller: UIAlertController.
+        let alertController = UIAlertController(
+            title: messageTitle,
+            message: errorMessage,
+            preferredStyle: .alert
+        )
+        
+        let cancelAlertOption = UIAlertAction(title: "Understood", style: .cancel, handler: nil)
+        // pass to the controller the option to cancel.
+        alertController.addAction(cancelAlertOption)
+        present(alertController, animated: true, completion: nil)
+        
+    }
 }
 
