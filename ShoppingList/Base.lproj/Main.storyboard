@@ -35,14 +35,23 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zye-Hp-Hoj">
                                         <rect key="frame" x="0.0" y="0.0" width="96.5" height="30"/>
                                         <state key="normal" title="New List"/>
+                                        <connections>
+                                            <action selector="createNewList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ny6-VG-adJ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tuc-AZ-GJf">
                                         <rect key="frame" x="126.5" y="0.0" width="96" height="30"/>
                                         <state key="normal" title="New Item"/>
+                                        <connections>
+                                            <action selector="clearInputFields:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bcZ-U7-o6S"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2I-BW-c1v">
                                         <rect key="frame" x="252.5" y="0.0" width="96.5" height="30"/>
                                         <state key="normal" title="Add"/>
+                                        <connections>
+                                            <action selector="addItemToCart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B5j-bL-u8N"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="tintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,53 +83,48 @@
                                     <action selector="dismissKeyBoard:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="pP8-8v-5AY"/>
                                 </connections>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xfs-MR-exX">
-                                <rect key="frame" x="59" y="315" width="296" height="447"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LQE-6f-7dD">
+                                <rect key="frame" x="39" y="299" width="336" height="535"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyReusableRow" id="Xfe-s4-ah4">
-                                        <rect key="frame" x="0.0" y="28" width="296" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xfe-s4-ah4" id="G1Q-cD-ICs">
-                                            <rect key="frame" x="0.0" y="0.0" width="296" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="TAq-ba-322" firstAttribute="top" secondItem="vui-X4-t8w" secondAttribute="bottom" constant="26" id="4Wd-MZ-WKE"/>
                             <constraint firstAttribute="trailing" secondItem="GLy-wq-3qK" secondAttribute="trailing" id="5cB-Pf-wwS"/>
                             <constraint firstItem="vui-X4-t8w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="7ca-gR-wuw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Xfs-MR-exX" secondAttribute="bottom" constant="100" id="Ffy-3q-ayM"/>
                             <constraint firstItem="Ucr-Gd-KFl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FpB-cR-dbE"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xfs-MR-exX" secondAttribute="trailing" constant="59" id="Fzw-1r-cLe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O7s-0c-Axe" secondAttribute="trailing" constant="45" id="HHC-jy-Y1d"/>
                             <constraint firstItem="Ucr-Gd-KFl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="11" id="Hhv-5l-URS"/>
                             <constraint firstItem="GLy-wq-3qK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Itb-7O-A1v"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nXo-ib-quP" secondAttribute="trailing" constant="32.5" id="J4P-oq-pbb"/>
                             <constraint firstItem="O7s-0c-Axe" firstAttribute="top" secondItem="hNF-QO-6iX" secondAttribute="bottom" constant="14" id="Nub-Au-FNB"/>
                             <constraint firstItem="TAq-ba-322" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="NzE-IK-KOa"/>
-                            <constraint firstItem="Xfs-MR-exX" firstAttribute="top" secondItem="TAq-ba-322" secondAttribute="bottom" constant="57" id="QAm-vI-hD1"/>
                             <constraint firstItem="nXo-ib-quP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32.5" id="SEr-mo-L36"/>
                             <constraint firstItem="vui-X4-t8w" firstAttribute="top" secondItem="nXo-ib-quP" secondAttribute="bottom" constant="47" id="UBN-dt-CnM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LQE-6f-7dD" secondAttribute="trailing" constant="39" id="UOk-qz-zae"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ucr-Gd-KFl" secondAttribute="trailing" constant="90" id="Y99-90-H8z"/>
                             <constraint firstItem="O7s-0c-Axe" firstAttribute="leading" secondItem="TAq-ba-322" secondAttribute="trailing" constant="47.5" id="ZqD-Cg-RRN"/>
+                            <constraint firstItem="LQE-6f-7dD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bpI-HR-WZm"/>
                             <constraint firstItem="GLy-wq-3qK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hzi-ps-iGZ"/>
                             <constraint firstItem="Ucr-Gd-KFl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="90" id="j1V-F6-sCz"/>
-                            <constraint firstItem="Xfs-MR-exX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="59" id="qgp-Jc-mC8"/>
+                            <constraint firstItem="LQE-6f-7dD" firstAttribute="top" secondItem="TAq-ba-322" secondAttribute="bottom" constant="41" id="opZ-bv-yEM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LQE-6f-7dD" secondAttribute="bottom" constant="28" id="qqI-Ve-mwD"/>
                             <constraint firstItem="nXo-ib-quP" firstAttribute="top" secondItem="GLy-wq-3qK" secondAttribute="bottom" constant="19" id="uVr-Os-jR9"/>
                             <constraint firstItem="nXo-ib-quP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wgr-xL-5Py"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hNF-QO-6iX" secondAttribute="trailing" constant="46" id="wnm-mT-6SW"/>
+                            <constraint firstItem="LQE-6f-7dD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="39" id="y6V-GE-6JS"/>
                             <constraint firstItem="hNF-QO-6iX" firstAttribute="top" secondItem="nXo-ib-quP" secondAttribute="bottom" constant="47" id="ycq-KZ-YzA"/>
                             <constraint firstItem="hNF-QO-6iX" firstAttribute="leading" secondItem="vui-X4-t8w" secondAttribute="trailing" constant="21" id="yu5-Ns-mgc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="Xfs-MR-exX" id="xqp-ZH-pb8"/>
+                        <outlet property="amountTextField" destination="O7s-0c-Axe" id="CHC-iT-f2d"/>
+                        <outlet property="descriptionTextField" destination="hNF-QO-6iX" id="p69-SR-Vhr"/>
+                        <outlet property="itemsListArea" destination="LQE-6f-7dD" id="4gE-DZ-F7h"/>
                         <outletCollection property="textFields" destination="hNF-QO-6iX" collectionClass="NSMutableArray" id="AVo-ZT-cwh"/>
                         <outletCollection property="textFields" destination="O7s-0c-Axe" collectionClass="NSMutableArray" id="0Zt-IZ-v4i"/>
                     </connections>
