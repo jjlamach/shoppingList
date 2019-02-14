@@ -14,8 +14,6 @@ import UIKit
  */
 class ViewController: UIViewController {
     
-    @IBOutlet var textFields: [UITextField]!
-    
     
     @IBOutlet weak var descriptionTextField: UITextField!
    
@@ -36,6 +34,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.dissmissKeyBoardWhenNotTouchingTextFields()
+       self.textViewProperties()
+    }
+    
+    /*
+        Trigger keyboard when touched.
+        For description text field.
+    */
+    @IBAction func activateKeyboard(_ sender: UITextField) {
+        sender.becomeFirstResponder()
     }
     
 
@@ -77,7 +84,7 @@ class ViewController: UIViewController {
     func buildString(_ someArray:[(String, Int)])-> String {
         var result:String = ""
         for tupple in  someArray {
-            result = tupple.0 + " " + String(tupple.1) + "\n"
+            result = String(tupple.1) + "x " + tupple.0 + "\n"
         }
         return result
     }
@@ -87,16 +94,34 @@ class ViewController: UIViewController {
     */
     @IBAction func addItemToCart(_ sender: UIButton) {
         var product:(String, Int);
+        
+        if self.descriptionTextField.text == "" && self.amountTextField.text == "" {
+            self.errorBothTextFieldsEmpty()
+            return
+        }
+        else if self.descriptionTextField.text != "" &&
+            self.amountTextField.text == "" {
+            self.generalErrorPopUpMessage()
+            return
+        }
+        else if self.descriptionTextField.text == "" &&
+            self.amountTextField.text != "" {
+            self.generalErrorPopUpMessage()
+            return
+        }
+        
         let descriptionText = self.descriptionTextField.text!
-       
+
         let quantityText = Int(self.amountTextField.text!)
+        
+        
         if self.isInstanceOfInt(quantityText) &&
             descriptionText.count > 0 {
             product.1 = quantityText!
             product.0 = descriptionText
             self.shoppingCart.append(product)
         } else {
-            self.displayPopUpErrorMessage()
+            self.generalErrorPopUpMessage()
         }
         let stringToShow = buildString(self.shoppingCart)
         self.itemsListArea.text += stringToShow
@@ -124,7 +149,7 @@ class ViewController: UIViewController {
     /*
         Displays an error message pop-up.
     */
-    func displayPopUpErrorMessage() {
+    func generalErrorPopUpMessage() {
         let messageTitle = "Wrong Input Values"
         let errorMessage = "Description field is empty or quantity value is not numeric"
         
@@ -139,7 +164,38 @@ class ViewController: UIViewController {
         // pass to the controller the option to cancel.
         alertController.addAction(cancelAlertOption)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    /*
+        Error pop-up message for when both text fields
+     are empty.
+    */
+    func errorBothTextFieldsEmpty() {
+        let messageTitle = "Empty Input Values"
+        let errorMessage = "Description and Quantity fields are empty."
         
+        // build a controller: UIAlertController.
+        let alertController = UIAlertController(
+            title: messageTitle,
+            message: errorMessage,
+            preferredStyle: .alert
+        )
+        
+        let cancelAlertOption = UIAlertAction(title: "Understood", style: .cancel, handler: nil)
+        // pass to the controller the option to cancel.
+        alertController.addAction(cancelAlertOption)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    
+    /*
+     Properties for the UITextView.
+    */
+    func textViewProperties() -> Void {
+        self.itemsListArea.isEditable = false
+        self.itemsListArea.textColor = UIColor.blue
+        self.itemsListArea.font = UIFont.init(name: "Times New Roman", size: 20)
     }
 }
 
