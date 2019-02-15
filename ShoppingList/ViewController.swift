@@ -8,10 +8,6 @@
 
 import UIKit
 
-/*
- A component that has a TableView must conform to the
- UITableViewDataSource protocol.
- */
 class ViewController: UIViewController {
     
     
@@ -24,15 +20,15 @@ class ViewController: UIViewController {
     
     
     /*
-     ShoppingCart: contains the item and its price.
+     ShoppingCart, a tupple: contains the item and its price.
     */
     var shoppingCart: [(String, Int)] = []
     
     
     
+// Do any additional setup after loading the view, typically from a nib.
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.dissmissKeyBoardWhenNotTouchingTextFields()
        self.textViewProperties()
     }
@@ -94,7 +90,7 @@ class ViewController: UIViewController {
     */
     @IBAction func addItemToCart(_ sender: UIButton) {
         var product:(String, Int);
-        
+        // check for empty fields.
         if self.descriptionTextField.text == "" && self.amountTextField.text == "" {
             self.errorBothTextFieldsEmpty()
             return
@@ -109,20 +105,27 @@ class ViewController: UIViewController {
             self.generalErrorPopUpMessage()
             return
         }
-        
+        // gets the values of the input fields.
         let descriptionText = self.descriptionTextField.text!
 
         let quantityText = Int(self.amountTextField.text!)
         
-        
-        if self.isInstanceOfInt(quantityText) &&
-            descriptionText.count > 0 {
+        // to make sure it is a valid number, should not be nil
+        if quantityText == nil {
+            self.generalErrorPopUpMessage()
+            return
+        }
+            // fill the tupple.
+        else if quantityText != nil && descriptionText != "" {
             product.1 = quantityText!
             product.0 = descriptionText
             self.shoppingCart.append(product)
         } else {
             self.generalErrorPopUpMessage()
+            return
         }
+        
+        
         let stringToShow = buildString(self.shoppingCart)
         self.itemsListArea.text += stringToShow
     }
@@ -134,18 +137,8 @@ class ViewController: UIViewController {
         self.descriptionTextField.text = ""
         self.amountTextField.text = ""
     }
+
     
-    /*
-     Checks if a number is an instance of Int.
-    */
-    func isInstanceOfInt(_ possibleNumber:Int?)-> Bool {
-        let result = possibleNumber is Int
-        if result == true {
-            return true
-        } else {
-            return false
-        }
-    }
     /*
         Displays an error message pop-up.
     */
